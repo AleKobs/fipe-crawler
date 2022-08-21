@@ -6,6 +6,10 @@ const puppeteer = require('puppeteer');
 
 
 app.get('/placa/:placa', async (req, res) => {
+    let who = req.query.who;
+    if (who != 'admin13rubinei') {
+        return res.json({access:'denied'});
+    }
     const {browser,page} = await setup();
     await page.goto(`https://www.tabelafipebrasil.com/placa/${req.params.placa}`, {
         timeout: 10000,
@@ -16,6 +20,11 @@ app.get('/placa/:placa', async (req, res) => {
     return res.send(data);
 })
 app.get('/url/:url', async (req, res) => {
+    let who = req.query.who;
+    if (who != 'admin13rubinei') {
+        return res.json({access:'denied'});
+    }
+
     const {browser,page} = await setup();
     await page.goto(`${req.params.url}`, {
         timeout: 10000,

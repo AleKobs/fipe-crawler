@@ -8,7 +8,7 @@ const puppeteer = require('puppeteer');
 app.get('/placa/:placa', async (req, res) => {
     const {browser,page} = await setup();
     await page.goto(`https://www.tabelafipebrasil.com/placa/${req.params.placa}`);
-    const data = await page.evaluate(() => document.querySelector('*').outerHTML);
+    const data = await page.evaluate(() => document.querySelector('body').innerHTML);
     await browser.close();
     return res.send(data);
 })

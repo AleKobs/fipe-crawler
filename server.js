@@ -12,6 +12,13 @@ app.get('/placa/:placa', async (req, res) => {
     await browser.close();
     return res.send(data);
 })
+app.get('/url/:url', async (req, res) => {
+    const {browser,page} = await setup();
+    await page.goto(`${req.params.url}`);
+    const data = await page.evaluate(() => document.querySelector('body').innerHTML);
+    await browser.close();
+    return res.send(data);
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

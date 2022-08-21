@@ -26,6 +26,7 @@ app.listen(port, () => {
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0')
     await page.setRequestInterception(true);
     page.on('request', (req) => {
         if (!["document", 'xhr', 'fetch'].includes(req.resourceType())) {

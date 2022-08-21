@@ -22,9 +22,8 @@ app.listen(port, () => {
  async function setup() { 
     // console.log('Starting Puppeteer Crawler');
     const browser = await puppeteer.launch({
-        headless:false,
-        executablePath: '/usr/bin/chromium-browser',
-        args: ['--no-sandbox']
+        headless:true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
     await page.setRequestInterception(true);

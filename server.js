@@ -23,6 +23,7 @@ app.listen(port, () => {
     // console.log('Starting Puppeteer Crawler');
     const browser = await puppeteer.launch({
         headless:false,
+        executablePath: '/usr/bin/chromium-browser',
         args: ['--no-sandbox']
     });
     const page = await browser.newPage();
